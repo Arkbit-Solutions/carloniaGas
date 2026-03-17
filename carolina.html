@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carolina Gas - Local Propane Gas Service | Mount Pleasant, SC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;overflow-x:hidden}
+        body{font-family:'Poppins',sans-serif;color:#374151;line-height:1.6;overflow-x:hidden;-webkit-text-size-adjust:100%}
+
+        /* NAV */
+        nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:1000;transition:all .3s ease;border-bottom:1px solid transparent}
+        nav.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.08);border-bottom-color:#e2e8f0}
+        .nav-container{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem}
+        .logo{text-decoration:none;display:flex;align-items:center}
+        .logo img{height:42px;width:auto;transition:transform .3s}
+        .logo:hover img{transform:scale(1.05)}
+        .nav-right{display:flex;align-items:center;gap:1.5rem}
+        .nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
+        .nav-links a{text-decoration:none;color:#374151;font-weight:500;font-size:.95rem;position:relative;transition:color .3s}
+        .nav-links a::after{content:'';position:absolute;width:0;height:2px;bottom:-5px;left:0;background:linear-gradient(135deg,#2563eb,#10b981);transition:width .3s}
+        .nav-links a:hover{color:#2563eb}
+        .nav-links a:hover::after{width:100%}
+        .nav-btn{background:#2563eb;color:#fff!important;padding:.625rem 1.25rem;border-radius:8px;font-weight:600!important;transition:all .3s!important;box-shadow:0 4px 15px rgba(37,99,235,.3);font-size:.9rem!important}
+        .nav-btn::after{display:none!important}
+        .nav-btn:hover{background:#1d4ed8!important;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.4)}
+        .lang-switcher{display:flex;border:2px solid #e2e8f0;border-radius:8px;overflow:hidden}
+        .lang-btn{padding:5px 12px;border:none;background:transparent;color:#6b7280;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .3s;font-family:inherit}
+        .lang-btn.active{background:#2563eb;color:#fff}
+        .lang-btn:hover:not(.active){background:#f1f5f9;color:#374151}
+        .hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;background:none;border:none}
+        .hamburger span{width:24px;height:2.5px;background:#374151;border-radius:3px;transition:all .3s}
+
+        /* HERO */
+        .hero{min-height:100vh;background:url('https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=2800,fit=crop/mP4nlN0q3kSojkkp/12.55.43_23e3bd4d-AzGex1RnvMFeLxNd.jpg') center/cover no-repeat;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;inset:0;background:rgba(15,23,42,.7);pointer-events:none}
+        .hero-container{max-width:1400px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+        .hero-content h1{font-size:3rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:1rem}
+        .hero-content h1 .highlight{color:#60a5fa}
+        .hero-content p{color:rgba(255,255,255,.8);font-size:1.15rem;margin-bottom:2rem;line-height:1.7;max-width:550px}
+        .hero-badges{display:flex;gap:.75rem;margin-bottom:1.5rem;flex-wrap:wrap}
+        .badge{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);padding:.5rem 1rem;border-radius:50px;color:#fff;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:.5rem}
+        .badge i{color:#10b981;font-size:.75rem}
+        .hero-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+        .btn-primary{background:#2563eb;color:#fff;padding:.875rem 1.75rem;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;font-family:inherit;box-shadow:0 4px 15px rgba(37,99,235,.3)}
+        .btn-primary:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,99,235,.4)}
+        .btn-secondary{background:transparent;color:#fff;padding:.875rem 1.75rem;border:2px solid rgba(255,255,255,.3);border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;font-family:inherit}
+        .btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-2px)}
+        .hero-visual{display:flex;justify-content:center;align-items:center}
+        .hero-features{display:flex;flex-direction:column;gap:1rem;width:100%;max-width:420px}
+        .hero-feature{background:rgba(255,255,255,.07);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:all .3s}
+        .hero-feature:hover{background:rgba(255,255,255,.12);transform:translateX(6px)}
+        .hero-feature-icon{width:50px;height:50px;min-width:50px;background:linear-gradient(135deg,#2563eb,#10b981);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:#fff}
+        .hero-feature-text h4{color:#fff;font-size:1rem;font-weight:600;margin-bottom:2px}
+        .hero-feature-text p{color:rgba(255,255,255,.6);font-size:.85rem;margin:0;line-height:1.4}
+
+        /* QUICK ACTIONS */
+        .quick-actions{padding:0;margin-top:-3rem;position:relative;z-index:2}
+        .quick-actions-grid{max-width:700px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;padding:0 2rem}
+        .quick-action{padding:2rem 1.5rem;text-align:center;text-decoration:none;color:#374151;background:#fff;border-radius:16px;border:2px solid #f1f5f9;transition:all .3s;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.05)}
+        .quick-action:hover{border-color:#2563eb;transform:translateY(-5px);box-shadow:0 10px 30px rgba(37,99,235,.1)}
+        .quick-action:hover .qa-icon{transform:scale(1.1)}
+        .qa-icon{width:55px;height:55px;background:linear-gradient(135deg,#2563eb,#10b981);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#fff;margin:0 auto 1rem;transition:transform .3s}
+        .quick-action h4{font-size:1rem;margin-bottom:.25rem;font-weight:600;color:#1f2937}
+        .quick-action p{font-size:.85rem;color:#6b7280}
+
+        /* SECTIONS */
+        section{padding:5rem 2rem}
+        .section-header{text-align:center;max-width:650px;margin:0 auto 3rem}
+        .section-label{display:inline-block;background:rgba(37,99,235,.08);color:#2563eb;padding:.375rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px}
+        .section-header h2{font-size:2.25rem;color:#1f2937;margin-bottom:.75rem;font-weight:700}
+        .section-header p{color:#6b7280;font-size:1.05rem}
+
+        /* ABOUT */
+        .about{background:#fff}
+        .about-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+        .about-image{position:relative}
+        .about-img-main{width:100%;height:400px;background:url('https://images.unsplash.com/photo-1664285831203-fc5687b44e2a?auto=format&fit=crop&w=1224&h=424') center/cover no-repeat;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:4rem;color:rgba(255,255,255,.3);position:relative;overflow:hidden}
+        .about-img-main::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,99,235,.3),rgba(16,185,129,.2));border-radius:16px}
+        .about-img-main i{display:none}
+        .about-floating-card{position:absolute;bottom:-20px;right:-15px;background:#fff;border-radius:12px;padding:1.25rem;box-shadow:0 10px 30px rgba(0,0,0,.1);display:flex;align-items:center;gap:12px;border:1px solid #e2e8f0}
+        .about-floating-card .icon{width:45px;height:45px;background:linear-gradient(135deg,#2563eb,#10b981);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;flex-shrink:0}
+        .about-floating-card .info strong{display:block;font-size:1.25rem;color:#1f2937}
+        .about-floating-card .info span{color:#6b7280;font-size:.8rem}
+        .about-content .section-label{margin-bottom:1rem}
+        .about-content h2{font-size:2rem;color:#1f2937;margin-bottom:1rem;font-weight:700}
+        .about-content > p{color:#6b7280;font-size:1rem;margin-bottom:1.5rem;line-height:1.7}
+        .about-tabs{display:flex;gap:.5rem;margin-bottom:1rem}
+        .about-tab{padding:.5rem 1.25rem;border:2px solid #e2e8f0;border-radius:8px;background:transparent;color:#374151;font-weight:600;cursor:pointer;transition:all .3s;font-size:.9rem;font-family:inherit}
+        .about-tab.active{background:#2563eb;border-color:#2563eb;color:#fff}
+        .about-tab:hover:not(.active){border-color:#2563eb;color:#2563eb}
+        .tab-content{display:none;color:#6b7280;line-height:1.7;font-size:.95rem}
+        .tab-content.active{display:block}
+
+        /* SERVICES */
+        .services{background:#f8fafc}
+        .services-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+        .service-card{background:#fff;border-radius:16px;padding:2rem 1.5rem;transition:all .3s;border:2px solid #f1f5f9;position:relative;overflow:hidden}
+        .service-card-img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem}
+        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#2563eb,#10b981);transform:scaleX(0);transition:transform .3s}
+        .service-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(37,99,235,.1);border-color:#2563eb}
+        .service-card:hover::before{transform:scaleX(1)}
+        .service-card:hover .service-icon{transform:scale(1.1) rotate(5deg)}
+        .service-icon{width:60px;height:60px;background:linear-gradient(135deg,#2563eb,#10b981);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.25rem;color:#fff;transition:transform .3s}
+        .service-card h3{font-size:1.2rem;color:#1f2937;margin-bottom:.75rem;font-weight:600}
+        .service-card p{color:#6b7280;line-height:1.6;font-size:.95rem}
+
+        /* WHY US */
+        .why-us{background:#fff}
+        .why-us .section-header h2{color:#1f2937}
+        .why-us .section-header p{color:#6b7280}
+        .why-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+        .why-card{background:#f8fafc;border:2px solid #f1f5f9;border-radius:16px;padding:2rem 1.5rem;text-align:center;transition:all .3s}
+        .why-card:hover{border-color:#2563eb;transform:translateY(-5px);box-shadow:0 10px 30px rgba(37,99,235,.1)}
+        .why-card:hover .why-icon{transform:scale(1.1)}
+        .why-icon{width:60px;height:60px;background:linear-gradient(135deg,#2563eb,#10b981);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;margin:0 auto 1rem;transition:transform .3s}
+        .why-card h4{font-size:1.05rem;margin-bottom:.5rem;font-weight:600;color:#1f2937}
+        .why-card p{color:#6b7280;font-size:.9rem;line-height:1.6}
+
+        /* CONTACT */
+        .contact{background:linear-gradient(135deg,#f8fafc,#e2e8f0)}
+        .contact-wrapper{max-width:1200px;margin:0 auto;display:flex;gap:1.5rem}
+        .contact-info{padding:2rem;background:#fff;border-radius:16px;color:#1f2937;border:1px solid #e2e8f0;box-shadow:0 4px 15px rgba(0,0,0,.05);width:340px;flex-shrink:0}
+        .contact-info h3{font-size:1.3rem;margin-bottom:.75rem;font-weight:600;color:#1f2937}
+        .contact-info > p{color:#6b7280;margin-bottom:1.5rem;line-height:1.6;font-size:.9rem}
+        .contact-item{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+        .contact-item:last-child{margin-bottom:0}
+        .contact-item-icon{width:45px;height:45px;min-width:45px;background:linear-gradient(135deg,#2563eb,#10b981);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem}
+        .contact-item-text strong{display:block;margin-bottom:2px;font-size:.9rem;color:#1f2937}
+        .contact-item-text span,.contact-item-text a{color:#6b7280;font-size:.85rem;text-decoration:none}
+        .contact-item-text a:hover{color:#2563eb}
+
+        .contact-form-card{background:#fff;border-radius:20px;padding:2rem;box-shadow:0 10px 30px rgba(0,0,0,.08);border:1px solid #e2e8f0;flex:1}
+        .contact-form-card h3{font-size:1.25rem;color:#1f2937;margin-bottom:.5rem;font-weight:600}
+        .contact-form-card > p{color:#6b7280;margin-bottom:1.5rem;font-size:.9rem}
+        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+        .form-group{display:flex;flex-direction:column;gap:.5rem}
+        .form-group.full{grid-column:1/-1}
+        .form-group label{font-size:.9rem;font-weight:600;color:#374151;display:flex;align-items:center;gap:.5rem}
+        .form-group input,.form-group select,.form-group textarea{width:100%;padding:.75rem 1rem;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;font-family:inherit;transition:all .3s;outline:none;background:#fff;color:#374151;-webkit-appearance:none;appearance:none}
+        .form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%236b7c8f'%3E%3Cpath d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;cursor:pointer}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+        .form-group input::placeholder,.form-group textarea::placeholder{color:#9ca3af}
+        .form-group textarea{resize:vertical;min-height:120px}
+        .form-submit{margin-top:.5rem}
+        .form-submit .btn-primary{width:100%;justify-content:center;padding:1rem;font-size:1rem}
+
+        /* FOOTER */
+        footer{background:#1f2937;color:#fff;padding:3.5rem 2rem 1.5rem}
+        .footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.1)}
+        .footer-brand .logo{margin-bottom:1rem}
+        .footer-brand .logo img{height:36px;filter:brightness(0) invert(1)}
+        .footer-brand p{color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.7}
+        .footer-col h4{font-size:.85rem;margin-bottom:1.25rem;font-weight:600;color:#10b981;text-transform:uppercase;letter-spacing:1px}
+        .footer-col ul{list-style:none}
+        .footer-col ul li{margin-bottom:.75rem}
+        .footer-col ul li a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.9rem;transition:color .3s}
+        .footer-col ul li a:hover{color:#10b981}
+        .footer-col ul li a i{width:18px;margin-right:.25rem}
+        .footer-bottom{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;font-size:.85rem;color:rgba(255,255,255,.35)}
+
+        /* ANIMATIONS */
+        .fade-in{opacity:0;transform:translateY(30px);transition:all .6s ease}
+        .fade-in.visible{opacity:1;transform:translateY(0)}
+
+        /* RESPONSIVE TABLET */
+        @media(max-width:1024px){
+            .hero-container{gap:2.5rem;padding:3rem 1.5rem}
+            .hero-content h1{font-size:2.5rem}
+            .why-grid{grid-template-columns:repeat(2,1fr)}
+            .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+            .about-grid{gap:2.5rem}
+            .contact-wrapper{flex-direction:column}
+            .contact-info{width:100%}
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media(max-width:768px){
+            .hamburger{display:flex}
+            .nav-container{padding:.75rem 1rem}
+            .nav-right{gap:.75rem}
+            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;padding:1rem;box-shadow:0 10px 30px rgba(0,0,0,.1);gap:.25rem}
+            .nav-links.open{display:flex}
+            .nav-links li a{display:block;padding:.75rem 1rem;border-radius:8px;font-size:1rem}
+            .nav-links li a:hover{background:#f1f5f9}
+            .nav-links li a::after{display:none}
+            .nav-btn{text-align:center;display:block!important;margin-top:.25rem}
+            .logo img{height:32px}
+            .lang-btn{padding:4px 10px;font-size:.75rem}
+
+            .hero{min-height:auto;padding-top:70px}
+            .hero-container{grid-template-columns:1fr;text-align:center;gap:0;padding:3rem 1.25rem 3.5rem}
+            .hero-content h1{font-size:1.85rem;line-height:1.25;margin-bottom:1rem}
+            .hero-content p{display:none}
+            .hero-badges{display:none}
+            .hero-buttons{flex-direction:column;align-items:stretch;gap:.75rem}
+            .btn-primary{padding:1rem 1.5rem;font-size:1rem;justify-content:center;width:100%;border-radius:10px}
+            .btn-secondary{padding:.875rem 1.5rem;font-size:.9rem;justify-content:center;width:100%;border-radius:10px}
+            .hero-visual{display:none}
+
+            .quick-actions{margin-top:-1.5rem}
+            .quick-actions-grid{grid-template-columns:1fr;gap:.75rem;padding:0 1rem}
+            .quick-action{display:flex;align-items:center;text-align:left;gap:1rem;padding:1.25rem;border-radius:12px}
+            .qa-icon{margin:0;width:46px;height:46px;min-width:46px;font-size:1.1rem}
+            .quick-action h4{font-size:.95rem;margin-bottom:2px}
+            .quick-action p{font-size:.8rem}
+
+            section{padding:3rem 1rem}
+            .section-header{margin-bottom:2rem}
+            .section-header h2{font-size:1.5rem}
+            .section-header p{font-size:.9rem}
+            .section-label{font-size:.75rem;padding:.3rem .75rem}
+
+            .about-grid{grid-template-columns:1fr;gap:2.5rem}
+            .about-img-main{height:220px;font-size:2.5rem;border-radius:12px}
+            .about-floating-card{bottom:-15px;right:10px;padding:1rem;gap:10px}
+            .about-floating-card .icon{width:38px;height:38px;font-size:.9rem}
+            .about-floating-card .info strong{font-size:1rem}
+            .about-floating-card .info span{font-size:.75rem}
+            .about-content h2{font-size:1.5rem}
+            .about-content > p{font-size:.9rem}
+            .about-tab{padding:.4rem 1rem;font-size:.85rem}
+            .tab-content{font-size:.9rem}
+
+            .services-grid{grid-template-columns:1fr;gap:1rem}
+            .service-card{padding:1.5rem 1.25rem;border-radius:12px}
+            .service-card-img{height:140px;border-radius:8px}
+            .service-icon{width:50px;height:50px;font-size:1.1rem;margin-bottom:1rem}
+            .service-card h3{font-size:1.05rem}
+            .service-card p{font-size:.88rem}
+
+            .why-grid{grid-template-columns:1fr 1fr;gap:.75rem}
+            .why-card{padding:1.5rem 1rem;border-radius:12px}
+            .why-icon{width:50px;height:50px;font-size:1.1rem;margin-bottom:.75rem}
+            .why-card h4{font-size:.9rem}
+            .why-card p{font-size:.8rem}
+
+            .contact-wrapper{flex-direction:column;gap:1rem}
+            .contact-info{padding:1.5rem;border-radius:12px;width:100%}
+            .contact-info h3{font-size:1.15rem}
+            .contact-info > p{font-size:.85rem;margin-bottom:1.25rem}
+            .contact-item{gap:10px;margin-bottom:1rem}
+            .contact-item-icon{width:40px;height:40px;min-width:40px;font-size:.9rem}
+            .contact-item-text strong{font-size:.85rem}
+            .contact-item-text span,.contact-item-text a{font-size:.82rem}
+            .contact-form-card{padding:1.5rem;border-radius:12px}
+            .contact-form-card h3{font-size:1.1rem}
+            .contact-form-card > p{font-size:.85rem;margin-bottom:1.25rem}
+            .form-grid{grid-template-columns:1fr;gap:1rem}
+            .form-group.full{grid-column:auto}
+            .form-group label{font-size:.85rem}
+            .form-group input,.form-group select,.form-group textarea{padding:.75rem;font-size:16px;border-radius:8px}
+            .form-submit .btn-primary{padding:.875rem;font-size:.95rem}
+
+            footer{padding:2.5rem 1rem 1.25rem}
+            .footer-grid{grid-template-columns:1fr;gap:1.75rem;padding-bottom:1.75rem}
+            .footer-brand .logo img{height:28px}
+            .footer-brand p{font-size:.85rem}
+            .footer-col h4{font-size:.8rem;margin-bottom:.75rem}
+            .footer-col ul li a{font-size:.85rem}
+            .footer-bottom{flex-direction:column;gap:.5rem;text-align:center;font-size:.8rem;padding-top:1.25rem}
+        }
+
+        @media(max-width:380px){
+            .hero-content h1{font-size:1.4rem}
+            .why-grid{grid-template-columns:1fr}
+            .section-header h2{font-size:1.3rem}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/mP4nlN0q3kSojkkp/carolina-gas-mnlvg9BkN4HZ6qab.png" alt="Carolina Gas">
+            </a>
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#about" data-i18n="nav_about">About</a></li>
+                    <li><a href="#services" data-i18n="nav_services">Services</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+                    <button class="lang-btn" onclick="setLang('es')">ES</button>
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <div class="badge"><i class="fas fa-check"></i> <span data-i18n="badge_years">30+ Years of Experience</span></div>
+                    <div class="badge"><i class="fas fa-check"></i> <span data-i18n="badge_local">Locally Owned</span></div>
+                </div>
+                <h1 data-i18n-html="hero_title">Your Trusted <span class="highlight">Propane Gas</span> Partner in Mount Pleasant</h1>
+                <p data-i18n="hero_desc">With over 30 years of experience, we are the only local propane company in Mount Pleasant dedicated to delivering reliable and personalized service to our neighbors.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary" data-i18n-html="hero_btn_service">Get Service <i class="fas fa-arrow-right"></i></a>
+                    <a href="tel:8438846611" class="btn-secondary"><i class="fas fa-phone"></i> 843-884-6611</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon"><i class="fas fa-fire-flame-curved"></i></div>
+                        <div class="hero-feature-text">
+                            <h4 data-i18n="hf1_title">Residential & Commercial</h4>
+                            <p data-i18n="hf1_desc">Propane solutions for homes and businesses</p>
+                        </div>
+                    </div>
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon"><i class="fas fa-award"></i></div>
+                        <div class="hero-feature-text">
+                            <h4 data-i18n="hf2_title">30+ Years of Service</h4>
+                            <p data-i18n="hf2_desc">Trusted by Mount Pleasant since 1994</p>
+                        </div>
+                    </div>
+                    <div class="hero-feature">
+                        <div class="hero-feature-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="hero-feature-text">
+                            <h4 data-i18n="hf3_title">Safe & Reliable</h4>
+                            <p data-i18n="hf3_desc">Certified propane delivery you can count on</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions">
+        <div class="quick-actions-grid">
+            <a class="quick-action" href="#contact">
+                <div class="qa-icon"><i class="fas fa-headset"></i></div>
+                <h4 data-i18n="qa_attention">Personalized Attention</h4>
+                <p data-i18n="qa_attention_desc">Tailored to your needs</p>
+            </a>
+            <a class="quick-action" href="#contact">
+                <div class="qa-icon"><i class="fas fa-bolt"></i></div>
+                <h4 data-i18n="qa_fast">Fast Service</h4>
+                <p data-i18n="qa_fast_desc">Quick & efficient delivery</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-image fade-in">
+                <div class="about-img-main"><i class="fas fa-fire-flame-curved"></i></div>
+                <div class="about-floating-card">
+                    <div class="icon"><i class="fas fa-fire-flame-curved"></i></div>
+                    <div class="info">
+                        <strong data-i18n="about_card_years">30+ Years</strong>
+                        <span data-i18n="about_card_serving">Serving Mount Pleasant</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-content fade-in">
+                <div class="section-label" data-i18n="about_label">Getting to Know Us</div>
+                <h2>Carolina Gas</h2>
+                <p data-i18n="about_desc">Our mission is to ensure that homes and businesses have safe and efficient access to propane, worry-free.</p>
+
+                <div class="about-tabs">
+                    <button class="about-tab active" onclick="switchTab(event, 'mission')" data-i18n="tab_mission">Our Mission</button>
+                    <button class="about-tab" onclick="switchTab(event, 'vision')" data-i18n="tab_vision">Our Vision</button>
+                </div>
+
+                <div class="tab-content active" id="mission" data-i18n="mission_text">
+                    We are committed to providing safe and reliable propane gas to every home and business in Mount Pleasant. With a focus on excellence and personalized attention, we ensure that your propane needs are met with the highest quality of service.
+                </div>
+                <div class="tab-content" id="vision" data-i18n="vision_text">
+                    We are committed to being your trusted supplier, ensuring fast and secure service, tailored to the needs of our customers, with a focus on excellence and attention to detail.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="section-header fade-in">
+            <div class="section-label" data-i18n="services_label">What We Offer</div>
+            <h2 data-i18n="services_title">Propane Gas Services</h2>
+            <p data-i18n="services_desc">We offer local propane gas charging with personalized and efficient attention for businesses and homes.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=723,fit=crop/mP4nlN0q3kSojkkp/delivery-man-using-digital-tablet-near-female-customer-mePvqv0W6ZHjbEqY.jpg" alt="Personalized attention" class="service-card-img" loading="lazy">
+                <div class="service-icon"><i class="fas fa-handshake"></i></div>
+                <h3 data-i18n="svc1_title">Personalized Attention</h3>
+                <p data-i18n="svc1_desc">We provide an efficient service adapted to the needs of each client, guaranteeing their satisfaction. Our team takes the time to understand your specific requirements and deliver tailored solutions.</p>
+            </div>
+            <div class="service-card fade-in">
+                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1440,h=723,fit=crop/mP4nlN0q3kSojkkp/man-looks-faucet-pipes-valve-pressure-meter-mk3zg9kbXGi1q20o.jpg" alt="Propane gas charge" class="service-card-img" loading="lazy">
+                <div class="service-icon"><i class="fas fa-gas-pump"></i></div>
+                <h3 data-i18n="svc2_title">Propane Gas Charge</h3>
+                <p data-i18n="svc2_desc">We provide quality propane gas for everyone, ensuring a constant and safe supply for your home or business. We load propane gas with exceptional and fast service.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon"><i class="fas fa-house-chimney"></i></div>
+                <h3 data-i18n="svc3_title">Residential Service</h3>
+                <p data-i18n="svc3_desc">Keep your home warm and your appliances running with our reliable residential propane delivery service. We ensure you never run out when you need it most.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon"><i class="fas fa-building"></i></div>
+                <h3 data-i18n="svc4_title">Commercial Solutions</h3>
+                <p data-i18n="svc4_desc">Dependable propane supply for businesses of all sizes. We understand that your operations depend on consistent fuel supply and we deliver on that promise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-us">
+        <div class="section-header fade-in">
+            <div class="section-label" data-i18n="why_label">Why Carolina Gas</div>
+            <h2 data-i18n="why_title">Commitment to Quality & Efficiency</h2>
+            <p data-i18n="why_desc">What makes us the preferred propane provider in Mount Pleasant.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-in">
+                <div class="why-icon"><i class="fas fa-clock"></i></div>
+                <h4 data-i18n="why1_title">Fast Service</h4>
+                <p data-i18n="why1_desc">Quick response and efficient delivery when you need propane the most.</p>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon"><i class="fas fa-shield-halved"></i></div>
+                <h4 data-i18n="why2_title">Safe Propane Gas</h4>
+                <p data-i18n="why2_desc">Safety is our top priority in every delivery and installation we perform.</p>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon"><i class="fas fa-map-pin"></i></div>
+                <h4 data-i18n="why3_title">Locally Owned</h4>
+                <p data-i18n="why3_desc">The only local propane company in Mount Pleasant. We're your neighbors.</p>
+            </div>
+            <div class="why-card fade-in">
+                <div class="why-icon"><i class="fas fa-award"></i></div>
+                <h4 data-i18n="why4_title">30+ Years Experience</h4>
+                <p data-i18n="why4_desc">Decades of expertise ensuring reliable service for our community.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="section-header fade-in">
+            <div class="section-label" data-i18n="contact_label">Get in Touch</div>
+            <h2 data-i18n="contact_title">Contact Us for Propane Gas Service</h2>
+            <p data-i18n="contact_desc">We are here to serve your propane gas needs with personalized and efficient service.</p>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-form-card fade-in">
+                <h3 data-i18n="form_title">Send Us a Message</h3>
+                <p data-i18n="form_desc">Fill out the form below and we'll get back to you as soon as possible.</p>
+                <form onsubmit="handleSubmit(event)" action="https://formsubmit.co/ajax/fedetahan8@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New Carolina Gas Inquiry">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name"><i class="fas fa-user" style="color:#2563eb;width:16px"></i> <span data-i18n="form_name">First and Last Name *</span></label>
+                            <input type="text" id="name" name="name" required data-i18n-placeholder="form_name_ph">
+                        </div>
+                        <div class="form-group">
+                            <label for="custid"><i class="fas fa-id-card" style="color:#2563eb;width:16px"></i> <span data-i18n="form_custid">CustID or Acct #</span></label>
+                            <input type="text" id="custid" name="custid" data-i18n-placeholder="form_custid_ph">
+                        </div>
+                        <div class="form-group full">
+                            <label for="address"><i class="fas fa-location-dot" style="color:#2563eb;width:16px"></i> <span data-i18n="form_address">Address *</span></label>
+                            <input type="text" id="address" name="address" required data-i18n-placeholder="form_address_ph">
+                        </div>
+                        <div class="form-group full">
+                            <label for="category"><i class="fas fa-list" style="color:#2563eb;width:16px"></i> <span data-i18n="form_category">Inquiry Category *</span></label>
+                            <select id="category" name="category" required>
+                                <option value="" disabled selected data-i18n="form_cat_default">Select a category</option>
+                                <option value="refill" data-i18n="form_cat_refill">Refill Request</option>
+                                <option value="service" data-i18n="form_cat_service">Service Request</option>
+                                <option value="billing" data-i18n="form_cat_billing">Billing / Invoice / Statement / Payment Inquiry</option>
+                                <option value="new-existing" data-i18n="form_cat_new_existing">New Customer/Homeowner Account - Existing Service with Previous Homeowner</option>
+                                <option value="new-switch" data-i18n="form_cat_new_switch">New Customer - Propane service is currently with another company</option>
+                                <option value="add-service" data-i18n="form_cat_add">Current Customer - Add new service or property location</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope" style="color:#2563eb;width:16px"></i> Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone" style="color:#2563eb;width:16px"></i> <span data-i18n="form_phone">Contact Telephone *</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(843) 000-0000">
+                        </div>
+                        <div class="form-group full">
+                            <label for="details"><i class="fas fa-comment-alt" style="color:#2563eb;width:16px"></i> <span data-i18n="form_details">Details for Your Inquiry *</span></label>
+                            <textarea id="details" name="details" required data-i18n-placeholder="form_details_ph"></textarea>
+                        </div>
+                        <div class="form-group full form-submit">
+                            <button type="submit" class="btn-primary" data-i18n-html="form_submit">Send Message <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="contact-info fade-in">
+                <h3 data-i18n="contact_info_title">Contact Information</h3>
+                <p data-i18n="contact_info_desc">Reach out to us for any inquiry about our propane gas services. We're always happy to help.</p>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+                    <div class="contact-item-text">
+                        <strong data-i18n="contact_phone_label">Office Phone</strong>
+                        <a href="tel:8438846611">843-884-6611</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-item-text">
+                        <strong>Email</strong>
+                        <a href="mailto:office@carolina-gas.com">office@carolina-gas.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-location-dot"></i></div>
+                    <div class="contact-item-text">
+                        <strong data-i18n="contact_address_label">Mailing Address</strong>
+                        <span>P.O. Box 2197<br>Mount Pleasant, SC 29465-2197</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop,q=95/mP4nlN0q3kSojkkp/carolina-gas-mnlvg9BkN4HZ6qab.png" alt="Carolina Gas">
+                </a>
+                <p style="margin-top:15px;" data-i18n="footer_desc">Local propane gas service for businesses and homes in Mount Pleasant, SC. Trusted by our community for over 30 years.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer_links">Quick Links</h4>
+                <ul>
+                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#about" data-i18n="footer_about">About Us</a></li>
+                    <li><a href="#services" data-i18n="nav_services">Services</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="nav_services">Services</h4>
+                <ul>
+                    <li><a href="#services" data-i18n="svc2_title">Propane Gas Charge</a></li>
+                    <li><a href="#services" data-i18n="svc3_title">Residential Service</a></li>
+                    <li><a href="#services" data-i18n="svc4_title">Commercial Solutions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="nav_contact">Contact</h4>
+                <ul>
+                    <li><a href="tel:8438846611"><i class="fas fa-phone"></i> 843-884-6611</a></li>
+                    <li><a href="mailto:office@carolina-gas.com"><i class="fas fa-envelope"></i> office@carolina-gas.com</a></li>
+                    <li><a href="#contact"><i class="fas fa-location-dot"></i> P.O. Box 2197, Mount Pleasant, SC</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span data-i18n="footer_copy">&copy; 2024 Carolina Gas. All rights reserved.</span>
+            <span>Mount Pleasant, SC 29465</span>
+        </div>
+    </footer>
+
+    <script>
+        var translations = {
+            en: {
+                nav_home: "Home",
+                nav_about: "About",
+                nav_services: "Services",
+                nav_contact: "Contact",
+                nav_pay: "Pay My Bill",
+                badge_years: "30+ Years of Experience",
+                badge_local: "Locally Owned",
+                hero_title: 'Your Trusted <span class="highlight">Propane Gas</span> Partner in Mount Pleasant',
+                hero_desc: "With over 30 years of experience, we are the only local propane company in Mount Pleasant dedicated to delivering reliable and personalized service to our neighbors.",
+                hero_btn_service: 'Get Service <i class="fas fa-arrow-right"></i>',
+                hf1_title: "Residential & Commercial",
+                hf1_desc: "Propane solutions for homes and businesses",
+                hf2_title: "30+ Years of Service",
+                hf2_desc: "Trusted by Mount Pleasant since 1994",
+                hf3_title: "Safe & Reliable",
+                hf3_desc: "Certified propane delivery you can count on",
+                qa_attention: "Personalized Attention",
+                qa_attention_desc: "Tailored to your needs",
+                qa_fast: "Fast Service",
+                qa_fast_desc: "Quick & efficient delivery",
+                qa_pay: "Pay My Bill",
+                qa_pay_desc: "Easy & convenient payment",
+                about_card_years: "30+ Years",
+                about_card_serving: "Serving Mount Pleasant",
+                about_label: "Getting to Know Us",
+                about_desc: "Our mission is to ensure that homes and businesses have safe and efficient access to propane, worry-free.",
+                tab_mission: "Our Mission",
+                tab_vision: "Our Vision",
+                mission_text: "We are committed to providing safe and reliable propane gas to every home and business in Mount Pleasant. With a focus on excellence and personalized attention, we ensure that your propane needs are met with the highest quality of service.",
+                vision_text: "We are committed to being your trusted supplier, ensuring fast and secure service, tailored to the needs of our customers, with a focus on excellence and attention to detail.",
+                services_label: "What We Offer",
+                services_title: "Propane Gas Services",
+                services_desc: "We offer local propane gas charging with personalized and efficient attention for businesses and homes.",
+                svc1_title: "Personalized Attention",
+                svc1_desc: "We provide an efficient service adapted to the needs of each client, guaranteeing their satisfaction. Our team takes the time to understand your specific requirements and deliver tailored solutions.",
+                svc2_title: "Propane Gas Charge",
+                svc2_desc: "We provide quality propane gas for everyone, ensuring a constant and safe supply for your home or business. We load propane gas with exceptional and fast service.",
+                svc3_title: "Residential Service",
+                svc3_desc: "Keep your home warm and your appliances running with our reliable residential propane delivery service. We ensure you never run out when you need it most.",
+                svc4_title: "Commercial Solutions",
+                svc4_desc: "Dependable propane supply for businesses of all sizes. We understand that your operations depend on consistent fuel supply and we deliver on that promise.",
+                why_label: "Why Carolina Gas",
+                why_title: "Commitment to Quality & Efficiency",
+                why_desc: "What makes us the preferred propane provider in Mount Pleasant.",
+                why1_title: "Fast Service",
+                why1_desc: "Quick response and efficient delivery when you need propane the most.",
+                why2_title: "Safe Propane Gas",
+                why2_desc: "Safety is our top priority in every delivery and installation we perform.",
+                why3_title: "Locally Owned",
+                why3_desc: "The only local propane company in Mount Pleasant. We're your neighbors.",
+                why4_title: "30+ Years Experience",
+                why4_desc: "Decades of expertise ensuring reliable service for our community.",
+                contact_label: "Get in Touch",
+                contact_title: "Contact Us for Propane Gas Service",
+                contact_desc: "We are here to serve your propane gas needs with personalized and efficient service.",
+                contact_info_title: "Contact Information",
+                contact_info_desc: "Reach out to us for any inquiry about our propane gas services. We're always happy to help.",
+                contact_phone_label: "Office Phone",
+                contact_address_label: "Mailing Address",
+                form_title: "Send Us a Message",
+                form_desc: "Fill out the form below and we'll get back to you as soon as possible.",
+                form_name: "First and Last Name *",
+                form_name_ph: "Your full name",
+                form_custid: "CustID or Acct #",
+                form_custid_ph: "Carolina Gas account",
+                form_address: "Address *",
+                form_address_ph: "Your property address",
+                form_category: "Inquiry Category *",
+                form_cat_default: "Select a category",
+                form_cat_refill: "Refill Request",
+                form_cat_service: "Service Request",
+                form_cat_billing: "Billing / Invoice / Statement / Payment Inquiry",
+                form_cat_new_existing: "New Customer/Homeowner Account - Existing Service with Previous Homeowner",
+                form_cat_new_switch: "New Customer - Propane service is currently with another company",
+                form_cat_add: "Current Customer - Add new service or property location",
+                form_phone: "Contact Telephone *",
+                form_details: "Details for Your Inquiry *",
+                form_details_ph: "Tell us more about your request...",
+                form_submit: 'Send Message <i class="fas fa-paper-plane"></i>',
+                form_sent: '<i class="fas fa-check"></i> Message Sent!',
+                footer_desc: "Local propane gas service for businesses and homes in Mount Pleasant, SC. Trusted by our community for over 30 years.",
+                footer_links: "Quick Links",
+                footer_about: "About Us",
+                footer_copy: "\u00a9 2024 Carolina Gas. All rights reserved."
+            },
+            es: {
+                nav_home: "Inicio",
+                nav_about: "Nosotros",
+                nav_services: "Servicios",
+                nav_contact: "Contacto",
+                nav_pay: "Pagar Factura",
+                badge_years: "30+ A\u00f1os de Experiencia",
+                badge_local: "Empresa Local",
+                hero_title: 'Su Socio de Confianza en <span class="highlight">Gas Propano</span> en Mount Pleasant',
+                hero_desc: "Con m\u00e1s de 30 a\u00f1os de experiencia, somos la \u00fanica empresa local de propano en Mount Pleasant dedicada a brindar un servicio confiable y personalizado a nuestros vecinos.",
+                hero_btn_service: 'Solicitar Servicio <i class="fas fa-arrow-right"></i>',
+                hf1_title: "Residencial y Comercial",
+                hf1_desc: "Soluciones de propano para hogares y negocios",
+                hf2_title: "30+ A\u00f1os de Servicio",
+                hf2_desc: "La confianza de Mount Pleasant desde 1994",
+                hf3_title: "Seguro y Confiable",
+                hf3_desc: "Entrega de propano certificada en la que puede confiar",
+                qa_attention: "Atenci\u00f3n Personalizada",
+                qa_attention_desc: "Adaptado a sus necesidades",
+                qa_fast: "Servicio R\u00e1pido",
+                qa_fast_desc: "Entrega r\u00e1pida y eficiente",
+                qa_pay: "Pagar Factura",
+                qa_pay_desc: "Pago f\u00e1cil y conveniente",
+                about_card_years: "30+ A\u00f1os",
+                about_card_serving: "Sirviendo a Mount Pleasant",
+                about_label: "Con\u00f3zcanos",
+                about_desc: "Nuestra misi\u00f3n es asegurar que hogares y negocios tengan acceso seguro y eficiente al propano, sin preocupaciones.",
+                tab_mission: "Nuestra Misi\u00f3n",
+                tab_vision: "Nuestra Visi\u00f3n",
+                mission_text: "Estamos comprometidos a proporcionar gas propano seguro y confiable a cada hogar y negocio en Mount Pleasant. Con un enfoque en la excelencia y la atenci\u00f3n personalizada, nos aseguramos de que sus necesidades de propano se cumplan con la m\u00e1s alta calidad de servicio.",
+                vision_text: "Estamos comprometidos a ser su proveedor de confianza, garantizando un servicio r\u00e1pido y seguro, adaptado a las necesidades de nuestros clientes, con un enfoque en la excelencia y la atenci\u00f3n al detalle.",
+                services_label: "Lo Que Ofrecemos",
+                services_title: "Servicios de Gas Propano",
+                services_desc: "Ofrecemos carga local de gas propano con atenci\u00f3n personalizada y eficiente para negocios y hogares.",
+                svc1_title: "Atenci\u00f3n Personalizada",
+                svc1_desc: "Brindamos un servicio eficiente adaptado a las necesidades de cada cliente, garantizando su satisfacci\u00f3n. Nuestro equipo se toma el tiempo para entender sus requisitos espec\u00edficos y ofrecer soluciones a medida.",
+                svc2_title: "Carga de Gas Propano",
+                svc2_desc: "Proporcionamos gas propano de calidad para todos, asegurando un suministro constante y seguro para su hogar o negocio. Cargamos gas propano con un servicio excepcional y r\u00e1pido.",
+                svc3_title: "Servicio Residencial",
+                svc3_desc: "Mantenga su hogar c\u00e1lido y sus electrodom\u00e9sticos funcionando con nuestro servicio confiable de entrega residencial de propano. Nos aseguramos de que nunca se quede sin gas cuando m\u00e1s lo necesita.",
+                svc4_title: "Soluciones Comerciales",
+                svc4_desc: "Suministro confiable de propano para negocios de todos los tama\u00f1os. Entendemos que sus operaciones dependen de un suministro constante de combustible y cumplimos esa promesa.",
+                why_label: "\u00bfPor Qu\u00e9 Carolina Gas?",
+                why_title: "Compromiso con la Calidad y Eficiencia",
+                why_desc: "Lo que nos hace el proveedor preferido de propano en Mount Pleasant.",
+                why1_title: "Servicio R\u00e1pido",
+                why1_desc: "Respuesta r\u00e1pida y entrega eficiente cuando m\u00e1s necesita propano.",
+                why2_title: "Gas Propano Seguro",
+                why2_desc: "La seguridad es nuestra prioridad en cada entrega e instalaci\u00f3n que realizamos.",
+                why3_title: "Empresa Local",
+                why3_desc: "La \u00fanica empresa local de propano en Mount Pleasant. Somos sus vecinos.",
+                why4_title: "30+ A\u00f1os de Experiencia",
+                why4_desc: "D\u00e9cadas de experiencia garantizando un servicio confiable para nuestra comunidad.",
+                contact_label: "Cont\u00e1ctenos",
+                contact_title: "Cont\u00e1ctenos para Servicio de Gas Propano",
+                contact_desc: "Estamos aqu\u00ed para atender sus necesidades de gas propano con un servicio personalizado y eficiente.",
+                contact_info_title: "Informaci\u00f3n de Contacto",
+                contact_info_desc: "Comun\u00edquese con nosotros para cualquier consulta sobre nuestros servicios de gas propano. Siempre estamos felices de ayudar.",
+                contact_phone_label: "Tel\u00e9fono de Oficina",
+                contact_address_label: "Direcci\u00f3n Postal",
+                form_title: "Env\u00edenos un Mensaje",
+                form_desc: "Complete el formulario a continuaci\u00f3n y nos comunicaremos con usted lo antes posible.",
+                form_name: "Nombre y Apellido *",
+                form_name_ph: "Su nombre completo",
+                form_custid: "N\u00famero de Cliente o Cuenta",
+                form_custid_ph: "Cuenta de Carolina Gas",
+                form_address: "Direcci\u00f3n de la Propiedad *",
+                form_address_ph: "Direcci\u00f3n de su propiedad",
+                form_category: "Categor\u00eda de Consulta *",
+                form_cat_default: "Seleccione una categor\u00eda",
+                form_cat_refill: "Solicitud de Recarga",
+                form_cat_service: "Solicitud de Servicio",
+                form_cat_billing: "Facturaci\u00f3n / Estado de Cuenta / Consulta de Pago",
+                form_cat_new_existing: "Nuevo Cliente - Servicio existente con propietario anterior",
+                form_cat_new_switch: "Nuevo Cliente - Servicio de propano actualmente con otra empresa",
+                form_cat_add: "Cliente Actual - Agregar nuevo servicio o ubicaci\u00f3n",
+                form_phone: "Tel\u00e9fono de Contacto *",
+                form_details: "Detalles de su Consulta *",
+                form_details_ph: "Cu\u00e9ntenos m\u00e1s sobre su solicitud...",
+                form_submit: 'Enviar Mensaje <i class="fas fa-paper-plane"></i>',
+                form_sent: '<i class="fas fa-check"></i> \u00a1Mensaje Enviado!',
+                footer_desc: "Servicio local de gas propano para negocios y hogares en Mount Pleasant, SC. Con la confianza de nuestra comunidad por m\u00e1s de 30 a\u00f1os.",
+                footer_links: "Enlaces R\u00e1pidos",
+                footer_about: "Nosotros",
+                footer_copy: "\u00a9 2024 Carolina Gas. Todos los derechos reservados."
+            }
+        };
+
+        var currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+            });
+            var t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) el.textContent = t[key];
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-html');
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-placeholder');
+                if (t[key] !== undefined) el.placeholder = t[key];
+            });
+            try { localStorage.setItem('carolina-lang', lang); } catch(e) {}
+        }
+
+        try {
+            var saved = localStorage.getItem('carolina-lang');
+            if (saved && translations[saved]) setLang(saved);
+        } catch(e) {}
+
+        window.addEventListener('scroll', function() {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        function switchTab(e, tabId) {
+            document.querySelectorAll('.about-tab').forEach(function(t) { t.classList.remove('active'); });
+            document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+            e.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            var form = e.target;
+            var btn = form.querySelector('button[type="submit"]');
+            var t = translations[currentLang];
+            var originalHTML = btn.innerHTML;
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            fetch(form.action, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(form)))
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                btn.innerHTML = t.form_sent;
+                btn.style.background = '#10b981';
+                btn.style.boxShadow = '0 4px 15px rgba(16,185,129,.3)';
+                form.reset();
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                    btn.style.boxShadow = '';
+                    btn.disabled = false;
+                }, 3000);
+            })
+            .catch(function() {
+                btn.innerHTML = '<i class="fas fa-times"></i> Error';
+                btn.style.background = '#ef4444';
+                setTimeout(function() {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            });
+        }
+    </script>
+
+</body>
+</html>
